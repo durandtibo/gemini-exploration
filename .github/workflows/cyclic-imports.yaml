@@ -1,0 +1,55 @@
+name: Cyclic Imports
+on:
+  workflow_call:
+  workflow_dispatch:  # to trigger manually
+
+permissions:
+  contents: read
+
+jobs:
+  cyclic-import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup python environment
+        uses: durandtibo/setup-venv-uv-action@v0.0.3
+
+      - name: check gex
+        run: |
+          python -c "import gex"
+      - name: check gex.equality
+        run: |
+          python -c "from gex import equality"
+          python -c "from gex.equality import handler"
+          python -c "from gex.equality import tester"
+
+      - name: check gex.iterator
+        run: |
+          python -c "from gex import iterator"
+          python -c "from gex.iterator import bfs"
+          python -c "from gex.iterator import dfs"
+
+      - name: check gex.nested
+        run: |
+          python -c "from gex import nested"
+      - name: check gex.random
+        run: |
+          python -c "from gex import random"
+      - name: check gex.recursive
+        run: |
+          python -c "from gex import recursive"
+      - name: check gex.reducer
+        run: |
+          python -c "from gex import reducer"
+      - name: check gex.registry
+        run: |
+          python -c "from gex import registry"
+      - name: check gex.summary
+        run: |
+          python -c "from gex import summary"
+      - name: check gex.utils
+        run: |
+          python -c "from gex import utils"
