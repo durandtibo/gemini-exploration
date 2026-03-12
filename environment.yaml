@@ -1,4 +1,4 @@
-name: objectory
+name: gex
 channels:
   - conda-forge
 dependencies:
