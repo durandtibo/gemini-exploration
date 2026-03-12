@@ -2,7 +2,7 @@ r"""Define utility functions for environment variables."""
 
 from __future__ import annotations
 
-__all__ = ["check_env_api_key"]
+__all__ = ["check_env_api_key", "check_env_google_api_key"]
 
 import logging
 import os
@@ -33,3 +33,19 @@ def check_env_api_key(name: str) -> None:
         msg = f"{name} environment variable is not set or empty"
         raise RuntimeError(msg)
     logger.info(f"{name}={mask_secret(key)}")
+
+
+def check_env_google_api_key() -> None:
+    r"""Check if the Google API key is set as an environment variable.
+
+    Raises:
+        RuntimeError: If the Google API key is not set.
+
+    Example:
+        ```pycon
+        >>> from gex.utils.env import check_env_google_api_key
+        >>> check_env_google_api_key()
+
+        ```
+    """
+    return check_env_api_key("GOOGLE_API_KEY")
