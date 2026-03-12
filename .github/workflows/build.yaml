@@ -20,15 +20,7 @@ jobs:
       matrix:
         dist-type: [ "sdist", "wheel" ]
         package-extra: [
-          "",
-          'jax',
-          'numpy',
-          'packaging',
-          'pandas',
-          'polars',
-          'pyarrow',
-          'torch',
-          'xarray',
+          ""
         ]
 
     steps:
